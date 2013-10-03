@@ -1,0 +1,8 @@
+filename : share_prices.csv
+
+file contains :
+Year,Month,Company A, Company B,Company C
+1991,feb,10,,12
+1991,jan,7,,9
+1990,feb,4,5,6
+1990,jan,1,2,3

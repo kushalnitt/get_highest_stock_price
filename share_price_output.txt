@@ -1,0 +1,5 @@
+In Year 1991, Company A has the highest share price of 10 in the month of feb
+In Year 1991, Company C has the highest share price of 12 in the month of feb
+In Year 1990, Company A has the highest share price of 4 in the month of feb
+In Year 1990,  Company B has the highest share price of 5 in the month of feb
+In Year 1990, Company C has the highest share price of 6 in the month of feb

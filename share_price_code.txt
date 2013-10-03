@@ -1,0 +1,27 @@
+import csv
+
+f=open("share_price_test_case.csv", 'r')
+# Creates an iterative object where each iteration is a dict where keys are the fieldnames and 
+# the values are the information read.
+reader_object = csv.DictReader(f)
+
+# This will have the highest share price of the company on yearly basis and in a particular month with years as the keys. i.e.
+#{'1991': {'Company A': ('feb', 10), 'Company B': ('jan', 8), 'Company C': ('feb', 12)}, '1990': {'Company A': ('feb', 4), 'Company B': ('feb', 5), 'Company C': ('feb', 6)}}
+year_month_max_share_price = {}
+for reader_dict in reader_object: # iterates through each row in the file
+    #if year is not present in the year_month_max_share_price then adding it.
+    if reader_dict['Year'] not in year_month_max_share_price: 
+        year_month_max_share_price[reader_dict['Year']] = {}
+
+    for key_field in reader_dict.keys(): # iterating through each key field of the fetched row dict
+        # processing only the companys key_fields. Year and Month key_field processing is not required.
+        if key_field not in ('Year','Month') and reader_dict[key_field]:
+            # if the company's entry is not there in the year_month_max_share_priceyear_month_max_share_price then add it (as a dict) under its corresponding year with the key as company and the value as a tuple of Month and the share_price. If it already exist then check the share_price of the iterating row and if it is greater than the existing share_price in the tuple then replace the tuple with the new tuple of iterating company's month and share_price.
+            if key_field not in year_month_max_share_price[reader_dict['Year']]:
+                year_month_max_share_price[reader_dict['Year']][key_field]  = (reader_dict['Month'], int(reader_dict[key_field]))
+            elif int(reader_dict[key_field]) > year_month_max_share_price[reader_dict['Year']][key_field][1]:
+                year_month_max_share_price[reader_dict['Year']][key_field]  = (reader_dict['Month'], int(reader_dict[key_field]))
+
+for year in year_month_max_share_price: #printing the each companies highest share price and the corresponding month on yearly basis
+    for company in year_month_max_share_price[year]:
+        print "In Year %s, %s has the highest share price of %s in the month of %s" %(year, company, year_month_max_share_price[year][company][1],year_month_max_share_price[year][company][0])
